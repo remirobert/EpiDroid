@@ -12,6 +12,10 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        all {
+            buildConfigField "String", "API_ENDPOINT", "\"https://epitech-api.herokuapp.com\""
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -22,4 +26,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.mcxiaoke.volley:library:1.0.+@aar'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.+'
+    compile 'com.jakewharton:disklrucache:2.0.2'
+    compile 'com.google.code.gson:gson:2.3.+'
 }
