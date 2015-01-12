@@ -92,8 +92,14 @@ public class LoginActivity extends ActionBarActivity {
                 protected Map<String, String> getParams()
                 {
                     Map<String, String>  params = new HashMap<String, String>();
-                    params.put("login", "robert_r");
-                    params.put("password", "fl5>[dWn");
+
+                    TextView loginTextView = (TextView)getView().findViewById(R.id.loginTextView);
+                    TextView passwordTextView = (TextView)getView().findViewById(R.id.passwordTextView);
+
+                    params.put("login", loginTextView.getText().toString());
+                    params.put("password", passwordTextView.getText().toString());
+
+                    Log.i("E", "" + params);
                     return params;
                 }
             };

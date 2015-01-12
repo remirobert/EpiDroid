@@ -12,7 +12,7 @@
         android:inputType="textPersonName"
         android:hint="Login"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/loginTextView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -23,8 +23,8 @@
         android:inputType="textPassword"
         android:hint="Password"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/passwordTextView"
+        android:layout_below="@+id/loginTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -33,6 +33,6 @@
         android:layout_height="wrap_content"
         android:text="Connection"
         android:id="@+id/buttonConnection"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/passwordTextView"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
