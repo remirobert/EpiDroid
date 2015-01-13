@@ -6,8 +6,33 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="me.zirko.epidroid.ui.LoginActivity$PlaceholderFragment">
 
-    <TextView android:text="login Activity" android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/labTitle" />
+        android:inputType="textPersonName"
+        android:hint="Login"
+        android:ems="10"
+        android:id="@+id/loginTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:id="@+id/passwordTextView"
+        android:layout_below="@+id/loginTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connection"
+        android:id="@+id/buttonConnection"
+        android:layout_below="@+id/passwordTextView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
