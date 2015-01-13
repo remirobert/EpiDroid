@@ -20,12 +20,15 @@ public class HomeActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private CharSequence mGlobalTitle;
+    private String mToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        mToken = getIntent().getStringExtra("token");
         if (savedInstanceState != null) {
             mTitle = savedInstanceState.getCharSequence(STATE_TOOLBAR_TITLE);
         } else {
@@ -68,6 +71,10 @@ public class HomeActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(String title, Fragment fragment) {
         mTitle = title;
         if (fragment != null) {
+            Bundle args = new Bundle();
+            args.putString("token", mToken);
+            fragment.setArguments(args);
+
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, fragment)

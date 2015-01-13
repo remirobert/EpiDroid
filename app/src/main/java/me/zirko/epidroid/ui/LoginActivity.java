@@ -18,6 +18,5 @@ public class LoginActivity extends ActionBarActivity {
                     .add(R.id.container, new LoginFragment())
                     .commit();
         }
-
     }
  }

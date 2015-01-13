@@ -35,6 +35,7 @@ public class DashboardFragment extends Fragment
     private static String API_ROUTE = "/infos";
     private Activity mActivity;
     private View mView;
+    private String mToken;
 
     public DashboardFragment() {
     }
@@ -50,6 +51,8 @@ public class DashboardFragment extends Fragment
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
+        mToken = getArguments().getString("token");
+
         if (savedInstanceState == null) {
             fetchDashboard();
         }
@@ -57,7 +60,7 @@ public class DashboardFragment extends Fragment
 
     private void fetchDashboard() {
         Map<String, String> params = new HashMap<>();
-        params.put("token", "gndogjmoi2scoagcjcedlhu602");
+        params.put("token", mToken);
 
         VolleySingleton.getInstance(mActivity).addToRequestQueue(new GsonRequest<>(
                 API_ROUTE, Dashboard.class, this, this, params));

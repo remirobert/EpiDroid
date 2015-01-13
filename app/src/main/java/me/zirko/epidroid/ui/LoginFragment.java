@@ -1,5 +1,6 @@
 package me.zirko.epidroid.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,25 +23,24 @@ import me.zirko.epidroid.model.Account;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;
 
-/**
- * Created by remirobert on 13/01/15.
- */
 public class LoginFragment extends Fragment implements Response.Listener<Account>, Response.ErrorListener{
 
     public LoginFragment() {
     }
 
-
     @Override
     public void onResponse(Account user) {
         Log.i("USER DEBUG", "token : " + user.getToken());
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        intent.putExtra("token", user.getToken());
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
         Toast.makeText(getActivity(), "Error connection", Toast.LENGTH_SHORT).show();
         Log.e("ERROR REQUEST", "error : "+  volleyError.toString());
-
     }
 
     private void makeRequest() {
@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment implements Response.Listener<Account
         processButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // makeRequest();
+               makeRequest();
                 processButton.setProgress(30);
                 //processButton.setMode(ActionProcessButton.Mode.PROGRESS);
             }
