@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
+import com.linearlistview.LinearListView;
 
 import org.w3c.dom.Text;
 
@@ -23,6 +24,7 @@ import java.util.Map;
 
 import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.Dashboard;
+import me.zirko.epidroid.model.History;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;
 
@@ -36,6 +38,7 @@ public class DashboardFragment extends Fragment
     private Activity mActivity;
     private View mView;
     private String mToken;
+    private HistoryAdapter mHistoryAdapter;
 
     public DashboardFragment() {
     }
@@ -90,9 +93,13 @@ public class DashboardFragment extends Fragment
         ((TextView) mView.findViewById(R.id.login)).setText(dashboard.getInfos().getLogin());
         ((TextView) mView.findViewById(R.id.promo)).setText(String.valueOf(dashboard.getInfos()
                 .getPromo()));
-        ((TextView) mView.findViewById(R.id.semester)).setText(String.valueOf(dashboard.getInfos
-                ().getSemester()));
+        ((TextView) mView.findViewById(R.id.semester)).setText(dashboard.getCurrent().getSemesterCode());
         ((TextView) mView.findViewById(R.id.city)).setText(dashboard.getInfos().getLocation());
+        Float activeLog = Float.valueOf(dashboard.getCurrent().getActiveLog());
+        ((TextView) mView.findViewById(R.id.active_log)).setText(String.format("%.1fh", activeLog));
+
+        mHistoryAdapter = new HistoryAdapter(mActivity, dashboard.getHistory());
+        ((LinearListView) mView.findViewById(R.id.list)).setAdapter(mHistoryAdapter);
     }
 
     @Override

@@ -14,7 +14,7 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="connection">Connection</string>
-    <string name="connection_loading">Connection ...</string>
+    <string name="connection_loading">Connection…</string>
     <string name="connection_failed">Connection failed</string>
-
+    <string name="active_log">Active Log</string>
 </resources>
