@@ -8,4 +8,5 @@
     <dimen name="text_size_medium">14sp</dimen>
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="keyline_1">16dp</dimen>
+    <dimen name="keyline_2">32dp</dimen>
 </resources>
