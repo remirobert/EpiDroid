@@ -45,8 +45,8 @@ public class LoginFragment extends Fragment implements Response.Listener<Account
 
     private void makeRequest() {
         Map<String, String>  params = new HashMap<String, String>();
-        TextView loginTextView = (TextView)getView().findViewById(R.id.loginTextView);
-        TextView passwordTextView = (TextView)getView().findViewById(R.id.passwordTextView);
+        TextView loginTextView = (TextView)getView().findViewById(R.id.login_username);
+        TextView passwordTextView = (TextView)getView().findViewById(R.id.login_password);
 
         params.put("login", loginTextView.getText().toString());
         params.put("password", passwordTextView.getText().toString());
@@ -61,7 +61,7 @@ public class LoginFragment extends Fragment implements Response.Listener<Account
 
         View rootView =  inflater.inflate(R.layout.fragment_login, container, false);
 
-        final ActionProcessButton processButton = (ActionProcessButton)rootView.findViewById(R.id.flatButtonConnection);
+        final ActionProcessButton processButton = (ActionProcessButton)rootView.findViewById(R.id.login_connect);
 
         //Button buttonConnection = (Button)rootView.findViewById(R.id.buttonConnection);
 
