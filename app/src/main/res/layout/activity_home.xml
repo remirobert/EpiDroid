@@ -1,0 +1,51 @@
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- We use a Toolbar so that our drawer can be displayed
+             in front of the action bar -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextAppearance="@style/Widget.AppTheme.Title" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MergeRootFrame" />
+
+    </LinearLayout>
+
+    <me.zirko.epidroid.ui.widget.ScrimInsetsFrameLayout
+        android:id="@+id/navdrawer"
+        android:layout_width="@dimen/navdrawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/navdrawer_background"
+        android:fitsSystemWindows="true"
+        app:insetForeground="#4000">
+
+        <fragment
+            android:id="@+id/navdrawer_fragment"
+            android:name="me.zirko.epidroid.ui.NavigationDrawerFragment"
+            android:layout_width="@dimen/navdrawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/navdrawer" />
+    </me.zirko.epidroid.ui.widget.ScrimInsetsFrameLayout>
+
+</android.support.v4.widget.DrawerLayout>

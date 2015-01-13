@@ -20,7 +20,7 @@ public class RetryPolicy implements com.android.volley.RetryPolicy {
      */
     @Override
     public int getCurrentTimeout() {
-        return 5000;
+        return 30000;
     }
 
     /**
@@ -42,6 +42,8 @@ public class RetryPolicy implements com.android.volley.RetryPolicy {
      */
     @Override
     public void retry(VolleyError error) throws VolleyError {
-        Log.e(TAG, error.getMessage());
+        if (error.getMessage() != null) {
+            Log.e(TAG, error.getMessage());
+        }
     }
 }
