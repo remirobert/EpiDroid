@@ -31,6 +31,7 @@ public class LoginFragment extends Fragment
     private static final String TAG = LoginFragment.class.getSimpleName();
     private static final String PREFERENCE_CREDENTIALS = "preference:credentials";
     private static final String PREFERENCE_CREDENTIALS_TOKEN = "preference:credentials";
+    private View rootView;
 
     public LoginFragment() {
     }
@@ -53,6 +54,7 @@ public class LoginFragment extends Fragment
 
     @Override
     public void onResponse(Account user) {
+        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(100);
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 PREFERENCE_CREDENTIALS, Context.MODE_PRIVATE);
         sharedPref.edit().putString(PREFERENCE_CREDENTIALS_TOKEN, user.getToken()).commit();
@@ -65,7 +67,8 @@ public class LoginFragment extends Fragment
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        Toast.makeText(getActivity(), "Error connection", Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "err: " + volleyError.toString());
+        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(-1);
     }
 
     @Override
@@ -74,17 +77,15 @@ public class LoginFragment extends Fragment
 
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
+        this.rootView = rootView;
         final ActionProcessButton processButton = (ActionProcessButton) rootView.findViewById(R.id
                 .login_connect);
-
-        //Button buttonConnection = (Button)rootView.findViewById(R.id.buttonConnection);
 
         processButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 makeRequest();
-                processButton.setProgress(30);
-                //processButton.setMode(ActionProcessButton.Mode.PROGRESS);
+                processButton.setProgress(1);
             }
         });
 
@@ -98,6 +99,8 @@ public class LoginFragment extends Fragment
 
         params.put("login", loginTextView.getText().toString());
         params.put("password", passwordTextView.getText().toString());
+
+        Log.i("D", "params : " + params);
 
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(new GsonRequest<>(
                 Request.Method.POST, "https://epitech-api.herokuapp.com/login", Account.class,
