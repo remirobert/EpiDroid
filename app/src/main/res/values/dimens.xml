@@ -9,4 +9,6 @@
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="keyline_1">16dp</dimen>
     <dimen name="keyline_2">32dp</dimen>
+    <dimen name="keyline_3">8dp</dimen>
+    <dimen name="small_avatar_size">50dp</dimen>
 </resources>

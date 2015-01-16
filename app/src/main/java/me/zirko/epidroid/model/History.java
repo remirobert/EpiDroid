@@ -3,6 +3,8 @@ package me.zirko.epidroid.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class History {
 
     @Expose
@@ -12,7 +14,7 @@ public class History {
     @Expose
     private String content;
     @Expose
-    private String date;
+    private Date date;
     @Expose
     private String id;
     @Expose
@@ -69,14 +71,14 @@ public class History {
     /**
      * @return The date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     /**
      * @param date The date
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

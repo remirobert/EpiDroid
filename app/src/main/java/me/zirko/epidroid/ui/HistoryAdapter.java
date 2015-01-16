@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import me.zirko.epidroid.R;
@@ -23,7 +25,7 @@ public class HistoryAdapter extends BaseAdapter {
 
     public HistoryAdapter(Context context, List<History> history) {
         mContext = context;
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = LayoutInflater.from(context);
         mData = history;
     }
 
@@ -59,23 +61,27 @@ public class HistoryAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy 'à' HH:mm");
         History item = getItem(position);
         holder.title.setText(Html.fromHtml(item.getTitle()));
         holder.content.setText(Html.fromHtml(item.getContent()));
-        holder.date.setText(item.getDate());
-        holder.avatar.setImageUrl(item.getUser().getPicture(),
-                VolleySingleton.getInstance(mContext).getImageLoader());
+        holder.date.setText(df.format(item.getDate()));
+        if (item.getUser().getPicture() != null) {
+            holder.avatar.setImageUrl(item.getUser().getPicture(),
+                    VolleySingleton.getInstance(mContext).getImageLoader());
+        } else {
+            holder.avatar.setVisibility(View.GONE);
+        }
         holder.user.setText(item.getUser().getTitle());
 
         return convertView;
     }
 
-    private static class ViewHolder {
+    static class ViewHolder {
         TextView title;
         TextView content;
         TextView date;
         NetworkImageView avatar;
         TextView user;
-
     }
 }

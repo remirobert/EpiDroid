@@ -22,7 +22,9 @@ public class GsonRequest<T> extends Request<T> {
     private final static String BASE_URL = BuildConfig.API_ENDPOINT;
     private final String TAG = getClass().getSimpleName();
     private final Gson gson =
-            new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .setDateFormat("yyyy-MM-dd HH:mm:ss")
                     .create();
     private final Class<T> clazz;
     private final Response.Listener<T> listener;
