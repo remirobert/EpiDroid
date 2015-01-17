@@ -84,7 +84,6 @@ public class DashboardFragment extends Fragment
 
     @Override
     public void onResponse(Dashboard dashboard) {
-        Log.e(TAG, "onResponse access");
         ((NetworkImageView) mView.findViewById(R.id.profile_image))
                 .setImageUrl("https://cdn.local.epitech.eu/userprofil/" + dashboard.getInfos()
                                 .getPicture(),
@@ -103,6 +102,6 @@ public class DashboardFragment extends Fragment
 
     @Override
     public void onErrorResponse(VolleyError volleyError) {
-        Log.e(TAG, "onErrorResponse accessed" + volleyError.getLocalizedMessage());
+        Log.e(TAG, "onErrorResponse " + volleyError.getLocalizedMessage());
     }
 }
