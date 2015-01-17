@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/login"
         android:textColor="@color/text"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:layout_gravity="center"
         android:textColorHint="@android:color/darker_gray" />
 
