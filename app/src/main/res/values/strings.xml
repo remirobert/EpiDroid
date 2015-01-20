@@ -17,6 +17,4 @@
     <string name="connection_loading">Connection…</string>
     <string name="connection_failed">Connection failed</string>
     <string name="active_log">Active Log</string>
-    <string name="semester">Semester %1$s</string>
-    <string name="promo">Promo %1$d</string>
 </resources>

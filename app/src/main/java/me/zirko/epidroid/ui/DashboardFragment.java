@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
@@ -21,8 +20,8 @@ import org.w3c.dom.Text;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
 import me.zirko.epidroid.R;
+
 import me.zirko.epidroid.model.Dashboard;
 import me.zirko.epidroid.model.History;
 import me.zirko.epidroid.network.GsonRequest;

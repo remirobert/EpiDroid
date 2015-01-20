@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -29,6 +28,7 @@ public class LoginFragment extends Fragment
         implements Response.Listener<Account>, Response.ErrorListener {
 
     private static final String TAG = LoginFragment.class.getSimpleName();
+    private static String API_ROUTE = "/login";
     private static final String PREFERENCE_CREDENTIALS = "preference:credentials";
     private static final String PREFERENCE_CREDENTIALS_TOKEN = "preference:credentials";
     private View rootView;
@@ -100,10 +100,7 @@ public class LoginFragment extends Fragment
         params.put("login", loginTextView.getText().toString());
         params.put("password", passwordTextView.getText().toString());
 
-        Log.i("D", "params : " + params);
-
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(new GsonRequest<>(
-                Request.Method.POST, "https://epitech-api.herokuapp.com/login", Account.class,
-                this, this, params));
+                API_ROUTE, Account.class, this, this, params));
     }
 }
