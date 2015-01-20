@@ -25,12 +25,7 @@
             android:name=".ui.HomeActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".ui.DetailModuleActivity"
-            android:label="@string/title_activity_detail_module" >
-        </activity>
-        <activity
-            android:name=".ui.ProjectsDetailModule"
-            android:label="@string/title_activity_projects_detail_module" >
+            android:name=".ui.DetailModuleActivity" >
         </activity>
     </application>
 
