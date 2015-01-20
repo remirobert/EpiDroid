@@ -24,6 +24,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.linearlistview.LinearListView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +57,7 @@ public class NavigationDrawerFragment extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
+    private LinearListView mDrawerListView;
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
@@ -189,17 +191,14 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.navdrawer, container, false);
-        View header = inflater.inflate(R.layout.navdrawer_header, container, false);
 
-        mDrawerListView = (ListView) view.findViewById(R.id.navdrawer_items);
-        //mDrawerListView.addHeaderView(header);
-        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mDrawerListView = (LinearListView) view.findViewById(R.id.navdrawer_items);
+        mDrawerListView.setOnItemClickListener(new LinearListView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(LinearListView parent, View view, int position, long id) {
                 selectItem(position);
             }
         });
-
         return view;
     }
 
@@ -231,7 +230,7 @@ public class NavigationDrawerFragment extends Fragment {
                 R.string.navdrawer_item_settings, DashboardFragment.class);
 
         mDrawerListView.setAdapter(mAdapter);
-        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
+//        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         if (savedInstanceState == null) {
             selectItem(mCurrentSelectedPosition);
         }
@@ -294,9 +293,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
-        if (mDrawerListView != null) {
-            mDrawerListView.setItemChecked(position, true);
-        }
+//        if (mDrawerListView != null) {
+//            mDrawerListView.setItemChecked(position, true);
+//        }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
         }
