@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.Dashboard;
@@ -84,20 +85,27 @@ public class DashboardFragment extends Fragment
 
     @Override
     public void onResponse(Dashboard dashboard) {
-        ((NetworkImageView) mView.findViewById(R.id.profile_image))
-                .setImageUrl("https://cdn.local.epitech.eu/userprofil/" + dashboard.getInfos()
-                                .getPicture(),
-                        VolleySingleton.getInstance(mActivity).getImageLoader());
-        ((TextView) mView.findViewById(R.id.full_name)).setText(dashboard.getInfos().getTitle());
-        ((TextView) mView.findViewById(R.id.login)).setText(dashboard.getInfos().getLogin());
-        ((TextView) mView.findViewById(R.id.promo)).setText(getString(R.string.promo, dashboard.getInfos().getPromo()));
-        ((TextView) mView.findViewById(R.id.semester)).setText(getString(R.string.semester, dashboard.getCurrent().getSemesterCode()));
-        ((TextView) mView.findViewById(R.id.city)).setText(dashboard.getInfos().getLocation());
-        Float activeLog = Float.valueOf(dashboard.getCurrent().getActiveLog());
-        ((TextView) mView.findViewById(R.id.active_log)).setText(String.format("%.1fh", activeLog));
+        if (isAdded()) {
+            ((NetworkImageView) mView.findViewById(R.id.profile_image))
+                    .setImageUrl("https://cdn.local.epitech.eu/userprofil/" + dashboard.getInfos()
+                                    .getPicture(),
+                            VolleySingleton.getInstance(mActivity).getImageLoader());
+            ((TextView) mView.findViewById(R.id.full_name)).setText(dashboard.getInfos().getTitle
+                    ());
 
-        mHistoryAdapter = new HistoryAdapter(mActivity, dashboard.getHistory());
-        ((LinearListView) mView.findViewById(R.id.list)).setAdapter(mHistoryAdapter);
+            ((TextView) mView.findViewById(R.id.login)).setText(dashboard.getInfos().getLogin());
+            ((TextView) mView.findViewById(R.id.promo)).setText(getString(R.string.promo,
+                    dashboard.getInfos().getPromo()));
+            ((TextView) mView.findViewById(R.id.semester)).setText(getString(R.string.semester,
+                    dashboard.getCurrent().getSemesterCode()));
+            ((TextView) mView.findViewById(R.id.city)).setText(dashboard.getInfos().getLocation());
+            Float activeLog = Float.valueOf(dashboard.getCurrent().getActiveLog());
+            ((TextView) mView.findViewById(R.id.active_log)).setText(String.format("%.1fh",
+                    activeLog));
+
+            mHistoryAdapter = new HistoryAdapter(mActivity, dashboard.getHistory());
+            ((LinearListView) mView.findViewById(R.id.list)).setAdapter(mHistoryAdapter);
+        }
     }
 
     @Override
