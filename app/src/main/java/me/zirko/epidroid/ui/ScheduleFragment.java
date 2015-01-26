@@ -61,7 +61,6 @@ public class ScheduleFragment extends ListFragment
 
         String date = df.format(new Date());
 
-        date = "2015-02-11";
         String url = API_ROUTE + "?start=" + date + "&end=" + date + "&token=" + mToken;
 
         VolleySingleton.getInstance(mActivity).addToRequestQueue(new GsonRequest<>(
