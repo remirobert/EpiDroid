@@ -42,5 +42,6 @@
     <string name="student_grade_module">Student grade</string>
 
     <string name="unsubscribe_module">Unsubscribe module</string>
+    <string name="event_time">%1$s - %2$s</string>
 
 </resources>
