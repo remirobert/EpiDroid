@@ -16,14 +16,9 @@ import com.android.volley.VolleyError;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.Schedule;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;

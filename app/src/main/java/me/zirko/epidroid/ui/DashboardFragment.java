@@ -10,21 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 import com.linearlistview.LinearListView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.Dashboard;
-import me.zirko.epidroid.model.History;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;
 
@@ -84,7 +79,7 @@ public class DashboardFragment extends Fragment
 
     @Override
     public void onResponse(Dashboard dashboard) {
-        if (mView != null) {
+        if (mView != null && mActivity != null) {
             ((NetworkImageView) mView.findViewById(R.id.profile_image))
                     .setImageUrl("https://cdn.local.epitech.eu/userprofil/" + dashboard.getInfos()
                                     .getPicture(),

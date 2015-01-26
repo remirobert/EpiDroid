@@ -311,4 +311,8 @@ public class ListModuleItem {
         this.semester = semester;
     }
 
+    @Override
+    public String toString() {
+        return title;
+    }
 }

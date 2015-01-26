@@ -37,11 +37,12 @@
        
     <string name="promo">Promo %1$d</string>
 
-    <string name="number_credits_module">Credits number</string>
+    <string name="number_credits_module">Nombre de crédits : %1$d</string>
 
-    <string name="student_grade_module">Student grade</string>
+    <string name="student_grade_module">Grade : %1$s</string>
 
     <string name="unsubscribe_module">Unsubscribe module</string>
     <string name="event_time">%1$s - %2$s</string>
+    <string name="description">Description</string>
 
 </resources>

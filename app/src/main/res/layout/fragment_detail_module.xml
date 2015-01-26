@@ -1,73 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.zirko.epidroid.ui.DetailModuleFragment"
-    android:orientation="vertical">
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/titleModuleDetail"
-        android:background="@color/theme_primary"
-        android:gravity="center"
-        android:textColor="@color/text"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Grade:"
-        android:id="@+id/gradeView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/creditsModuleDetail" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/unsubscribe_module"
-        android:visibility="gone"
-        android:id="@+id/buttonAction" />
+    android:padding="@dimen/keyline_1"
+    tools:context="me.zirko.epidroid.ui.DetailModuleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/theme_primary"
-        android:paddingTop="@dimen/keyline_1"
-        android:paddingBottom="@dimen/keyline_1"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:id="@+id/descriptionBar" >
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/module_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            tools:text="Grade : Acquis"/>
+
+        <TextView
+            android:id="@+id/module_credits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            tools:text="Nombres de crédits : 1" />
+
+        <Button
+            android:id="@+id/module_unsubscribe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unsubscribe_module"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
-            android:id="@+id/textView"
-            android:textColor="@android:color/white" />
+            android:text="@string/description"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+        <TextView
+            android:id="@+id/module_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
     </LinearLayout>
-
-    <ScrollView android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:paddingTop="12sp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:singleLine="false"
-            android:textSize="16sp"
-            android:scrollbars="vertical"
-            android:id="@+id/descriptionModuleDetail"
-            />
-    </ScrollView>
-</LinearLayout>
+</ScrollView>
