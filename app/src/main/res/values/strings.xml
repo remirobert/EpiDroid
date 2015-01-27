@@ -12,6 +12,7 @@
     <string name="navdrawer_item_schedule">Schedule</string>
        
     <string name="navdrawer_item_modules">Modules</string>
+    <string name="navdrawer_item_marks">Marks</string>
        
     <string name="navdrawer_item_projects">Projects</string>
        
@@ -36,6 +37,7 @@
     <string name="semester">Semester %1$s</string>
        
     <string name="promo">Promo %1$d</string>
+
     <string name="number_credits_module">Nombre de crédits : %1$d</string>
     <string name="student_grade_module">Grade : %1$s</string>
     <string name="unsubscribe_module">Unsubscribe module</string>
