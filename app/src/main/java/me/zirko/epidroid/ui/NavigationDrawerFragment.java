@@ -211,6 +211,9 @@ public class NavigationDrawerFragment extends Fragment {
         addNavItem(R.drawable.ic_drawer_schedule, R.string.navdrawer_item_schedule,
                 R.string.navdrawer_item_schedule, ScheduleFragment.class);
 
+        addNavItem(R.drawable.ic_drawer_modules, R.string.navdrawer_item_marks,
+                R.string.navdrawer_item_marks, MarkFragment.class);
+
         addNavItem(R.drawable.ic_drawer_modules, R.string.navdrawer_item_modules,
                 R.string.navdrawer_item_modules, ModuleFragment.class);
 

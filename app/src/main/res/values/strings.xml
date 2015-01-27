@@ -10,6 +10,8 @@
     <string name="navdrawer_item_dashboard">Dashboard</string>
        
     <string name="navdrawer_item_schedule">Schedule</string>
+
+    <string name="navdrawer_item_marks">Marks</string>
        
     <string name="navdrawer_item_modules">Modules</string>
        
