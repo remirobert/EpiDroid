@@ -67,7 +67,7 @@ public class HistoryAdapter extends BaseAdapter {
         holder.content.setText(Html.fromHtml(item.getContent()));
         holder.date.setText(df.format(item.getDate()));
         if (item.getUser().getPicture() != null) {
-            holder.avatar.setImageUrl(item.getUser().getPicture(),
+            holder.avatar.setImageUrl(item.getUser().getPicture().replace("userprofil", "userprofil/profilview").replace("bmp", "jpg"),
                     VolleySingleton.getInstance(mContext).getImageLoader());
         } else {
             holder.avatar.setVisibility(View.GONE);

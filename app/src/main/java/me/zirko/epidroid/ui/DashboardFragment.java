@@ -81,8 +81,8 @@ public class DashboardFragment extends Fragment
     public void onResponse(Dashboard dashboard) {
         if (mView != null && mActivity != null) {
             ((NetworkImageView) mView.findViewById(R.id.profile_image))
-                    .setImageUrl("https://cdn.local.epitech.eu/userprofil/" + dashboard.getInfos()
-                                    .getPicture(),
+                    .setImageUrl("https://cdn.local.epitech.eu/userprofil/profilview/" + dashboard.getInfos()
+                                    .getPicture().replace("bmp", "jpg"),
                             VolleySingleton.getInstance(mActivity).getImageLoader());
             ((TextView) mView.findViewById(R.id.full_name)).setText(dashboard.getInfos().getTitle());
 

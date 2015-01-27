@@ -2,47 +2,29 @@
 <resources>
 
     <string name="app_name">EpiDroid</string>
-       
-    <string name="navigation_drawer_open">open drawer</string>
-       
-    <string name="navigation_drawer_close">close drawer</string>
-       
-    <string name="navdrawer_item_dashboard">Dashboard</string>
-       
-    <string name="navdrawer_item_schedule">Schedule</string>
-       
-    <string name="navdrawer_item_modules">Modules</string>
-       
-    <string name="navdrawer_item_projects">Projects</string>
-       
-    <string name="navdrawer_item_susies">Susies</string>
-       
-    <string name="navdrawer_item_group_photos">Group photos</string>
-       
-    <string name="navdrawer_item_settings">Settings</string>
-       
-    <string name="login">Login</string>
-       
-    <string name="password">Password</string>
-       
-    <string name="connection">Connection</string>
-       
-    <string name="connection_loading">Connection…</string>
-       
-    <string name="connection_failed">Connection failed</string>
-       
-    <string name="active_log">Active Log</string>
-       
-    <string name="semester">Semester %1$s</string>
-       
-    <string name="promo">Promo %1$d</string>
-
+           <string name="navigation_drawer_open">open drawer</string>
+           <string name="navigation_drawer_close">close drawer</string>
+           <string name="navdrawer_item_dashboard">Dashboard</string>
+           <string name="navdrawer_item_schedule">Schedule</string>
+           <string name="navdrawer_item_modules">Modules</string>
+           <string name="navdrawer_item_projects">Projects</string>
+           <string name="navdrawer_item_susies">Susies</string>
+           <string name="navdrawer_item_group_photos">Group photos</string>
+           <string name="navdrawer_item_settings">Settings</string>
+           <string name="login">Login</string>
+           <string name="password">Password</string>
+           <string name="connection">Connection</string>
+           <string name="connection_loading">Connection…</string>
+           <string name="connection_failed">Connection failed</string>
+           <string name="active_log">Active Log</string>
+           <string name="semester">Semester %1$s</string>
+           <string name="promo">Promo %1$d</string>
     <string name="number_credits_module">Nombre de crédits : %1$d</string>
-
     <string name="student_grade_module">Grade : %1$s</string>
-
     <string name="unsubscribe_module">Unsubscribe module</string>
     <string name="event_time">%1$s - %2$s</string>
     <string name="description">Description</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="project_time">Rendu le %1$s</string>
 
 </resources>
