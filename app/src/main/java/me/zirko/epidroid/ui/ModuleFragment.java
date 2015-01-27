@@ -41,6 +41,10 @@ public class ModuleFragment extends ListFragment
             mToken = getArguments().getString("token");
         }
 
+        mAdapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_list_item_1);
+
         if (savedInstanceState == null) {
             fetchModules();
         }
@@ -61,10 +65,7 @@ public class ModuleFragment extends ListFragment
     @Override
     public void onResponse(final ModuleList module) {
 
-        mAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                module.getModules());
+        mAdapter.addAll(module.getModules());
 
         setListAdapter(mAdapter);
     }

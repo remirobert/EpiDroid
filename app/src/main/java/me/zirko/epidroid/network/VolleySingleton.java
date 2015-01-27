@@ -2,6 +2,7 @@ package me.zirko.epidroid.network;
 
 import android.content.Context;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -40,7 +41,9 @@ public class VolleySingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
-        req.setRetryPolicy(new RetryPolicy());
+        req.setRetryPolicy(new DefaultRetryPolicy(30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         req.setShouldCache(true);
         getRequestQueue().add(req);
     }
