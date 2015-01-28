@@ -83,6 +83,8 @@ public class ScheduleFragment extends ListFragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setEmptyText("Vous n'êtes inscrit à aucune activité");
+
         getListView().setDividerHeight(0);
     }
 

@@ -36,18 +36,24 @@ public class ModuleFragment extends ListFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
 
         if (getArguments() != null) {
             mToken = getArguments().getString("token");
         }
 
-        mAdapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_list_item_1);
+        mAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1);
 
         if (savedInstanceState == null) {
             fetchModules();
         }
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setEmptyText("Vous n'avez pas de modules");
     }
 
     public void fetchModules() {
