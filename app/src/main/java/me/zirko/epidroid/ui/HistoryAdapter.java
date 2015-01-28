@@ -5,6 +5,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -18,30 +19,12 @@ import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.History;
 import me.zirko.epidroid.network.VolleySingleton;
 
-public class HistoryAdapter extends BaseAdapter {
-    private final Context mContext;
+public class HistoryAdapter extends ArrayAdapter<History> {
     private final LayoutInflater mInflater;
-    private List<History> mData;
 
-    public HistoryAdapter(Context context, List<History> history) {
-        mContext = context;
+    public HistoryAdapter(Context context) {
+        super(context, 0);
         mInflater = LayoutInflater.from(context);
-        mData = history;
-    }
-
-    @Override
-    public int getCount() {
-        return mData.size();
-    }
-
-    @Override
-    public History getItem(int position) {
-        return mData.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @Override
@@ -68,7 +51,7 @@ public class HistoryAdapter extends BaseAdapter {
         holder.date.setText(df.format(item.getDate()));
         if (item.getUser().getPicture() != null) {
             holder.avatar.setImageUrl(item.getUser().getPicture().replace("userprofil", "userprofil/profilview").replace("bmp", "jpg"),
-                    VolleySingleton.getInstance(mContext).getImageLoader());
+                    VolleySingleton.getInstance(getContext()).getImageLoader());
         } else {
             holder.avatar.setVisibility(View.GONE);
         }
