@@ -27,6 +27,10 @@
         <activity
             android:name=".ui.DetailModuleActivity" >
         </activity>
+        <activity
+            android:name=".ui.DetailMarkActivity" >
+        </activity>
+
     </application>
 
 </manifest>

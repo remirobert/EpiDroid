@@ -43,4 +43,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.+'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.3'
     compile 'com.github.frankiesardo:linearlistview:1.0.1@aar'
+    compile files('src/main/java/me/zirko/epidroid/util/mpandroidchartlibrary-1-7-4.jar')
 }
