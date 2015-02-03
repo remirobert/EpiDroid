@@ -32,7 +32,7 @@ public class DetailMarkActivity extends ActionBarActivity {
             window.setStatusBarColor(getResources().getColor(R.color.theme_primary_dark));
         }
 
-        setContentView(R.layout.activity_detail_module);
+        setContentView(R.layout.activity_marks);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);

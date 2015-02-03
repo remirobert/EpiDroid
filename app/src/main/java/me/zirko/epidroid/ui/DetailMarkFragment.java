@@ -1,6 +1,7 @@
 package me.zirko.epidroid.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,6 @@ public class DetailMarkFragment extends Fragment {
         if (getArguments() != null) {
             mTitle = getArguments().getString("title");
 
-            TextView t = (TextView)getActivity().findViewById(R.id.final_note);
-            t.setText("salu");
             //((TextView)getView().findViewById(R.id.module_title)).setText("salut");
             //((TextView)getActivity().findViewById(R.id.module_title)).setText(getArguments().getString("module"));
             //((TextView)getActivity().findViewById(R.id.final_note)).setText(getArguments().getString("note"));
@@ -36,6 +35,14 @@ public class DetailMarkFragment extends Fragment {
         }
 
         getActivity().setTitle(mTitle);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TextView t = (TextView)view.findViewById(R.id.final_note);
+        t.setText("salu");
+
     }
 
     @Override
