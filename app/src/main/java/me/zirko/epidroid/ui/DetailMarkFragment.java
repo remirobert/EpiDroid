@@ -25,11 +25,6 @@ public class DetailMarkFragment extends Fragment {
         if (getArguments() != null) {
             mTitle = getArguments().getString("title");
 
-            //((TextView)getView().findViewById(R.id.module_title)).setText("salut");
-            //((TextView)getActivity().findViewById(R.id.module_title)).setText(getArguments().getString("module"));
-            //((TextView)getActivity().findViewById(R.id.final_note)).setText(getArguments().getString("note"));
-            //((TextView)getActivity().findViewById(R.id.correcteur)).setText(getArguments().getString("correcteur"));
-            //((TextView)getActivity().findViewById(R.id.comment)).setText(getArguments().getString("comment"));
 
 //            marks = getArguments().get("marks");
         }
@@ -40,9 +35,11 @@ public class DetailMarkFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView t = (TextView)view.findViewById(R.id.final_note);
-        t.setText("salu");
-
+        ((TextView)view.findViewById(R.id.module_title)).setText("salut");
+        ((TextView)view.findViewById(R.id.module_title)).setText(getArguments().getString("module"));
+        ((TextView)view.findViewById(R.id.final_note)).setText(getArguments().getString("note"));
+        ((TextView)view.findViewById(R.id.correcteur)).setText(getArguments().getString("correcteur"));
+        ((TextView)view.findViewById(R.id.comment)).setText(getArguments().getString("comment"));
     }
 
     @Override

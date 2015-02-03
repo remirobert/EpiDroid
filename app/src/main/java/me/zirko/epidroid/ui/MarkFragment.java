@@ -72,9 +72,9 @@ public class MarkFragment extends ListFragment implements Response.Listener<Note
         intent.putExtra("token", mToken);
         intent.putExtra("title", currentMark.getTitle());
         intent.putExtra("module", currentMark.getTitlemodule());
-        //intent.putExtra("note", currentMark.getFinalNote());
-        //intent.putExtra("correcteur", currentMark.getCorrecteur());
-        //  intent.putExtra("comment", currentMark.getComment());
+        intent.putExtra("note", currentMark.getFinalNote());
+        intent.putExtra("correcteur", currentMark.getCorrecteur());
+        intent.putExtra("comment", currentMark.getComment());
 
 
         startActivity(intent);
