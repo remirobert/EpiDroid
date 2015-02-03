@@ -94,7 +94,7 @@ public class ScheduleFragment extends ListFragment
 
 
         for (Schedule event : schedule) {
-            if (event.getPast() != null && (!event.getPast() || event.getAllowToken())
+            if (((event.getPast() != null && !event.getPast()) || event.getAllowToken())
                     && "registered".equals(event.getEventRegistered())) {
                 eventList.add(event);
             }
