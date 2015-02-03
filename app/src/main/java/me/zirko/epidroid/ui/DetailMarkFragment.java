@@ -24,9 +24,6 @@ public class DetailMarkFragment extends Fragment {
 
         if (getArguments() != null) {
             mTitle = getArguments().getString("title");
-
-
-//            marks = getArguments().get("marks");
         }
 
         getActivity().setTitle(mTitle);

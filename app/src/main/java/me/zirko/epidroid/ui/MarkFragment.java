@@ -1,9 +1,11 @@
 package me.zirko.epidroid.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -84,16 +87,26 @@ public class MarkFragment extends ListFragment implements Response.Listener<Note
     public void onResponse(final Notes marks) {
         mMarks = marks.getNotes();
 
-        ArrayList<String> displayArray = new ArrayList<String>();
+        final ArrayList<String> displayArray = new ArrayList<String>();
         for (Note currentNote : marks.getNotes()) {
-            displayArray.add(currentNote.getTitle() + " : " + currentNote.getFinalNote());
+            displayArray.add(currentNote.getTitle() + " : <strong>" + currentNote.getFinalNote() + "</strong>");
         }
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, displayArray);
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_list_item_1, displayArray){
+
+            @Override
+            public View getView(int position, View convertView,
+                                ViewGroup parent) {
+                View view =super.getView(position, convertView, parent);
+
+                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                textView.setText(Html.fromHtml(displayArray.get(position)), TextView.BufferType.SPANNABLE);
+                return view;
+            }
+        };
 
         Collections.reverse(displayArray);
-
-        setListAdapter(itemsAdapter);
-
+        setListAdapter(adapter);
     }
 }
