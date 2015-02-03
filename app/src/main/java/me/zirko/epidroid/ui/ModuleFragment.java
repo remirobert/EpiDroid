@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.zirko.epidroid.R;
@@ -70,7 +71,7 @@ public class ModuleFragment extends ListFragment
 
     @Override
     public void onResponse(final ModuleList module) {
-
+        Collections.reverse(module.getModules());
         mAdapter.addAll(module.getModules());
 
         setListAdapter(mAdapter);
