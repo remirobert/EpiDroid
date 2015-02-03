@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,15 @@ public class DetailMarkFragment extends Fragment {
 
         if (getArguments() != null) {
             mTitle = getArguments().getString("title");
+
+            TextView t = (TextView)getActivity().findViewById(R.id.final_note);
+            t.setText("salu");
+            //((TextView)getView().findViewById(R.id.module_title)).setText("salut");
+            //((TextView)getActivity().findViewById(R.id.module_title)).setText(getArguments().getString("module"));
+            //((TextView)getActivity().findViewById(R.id.final_note)).setText(getArguments().getString("note"));
+            //((TextView)getActivity().findViewById(R.id.correcteur)).setText(getArguments().getString("correcteur"));
+            //((TextView)getActivity().findViewById(R.id.comment)).setText(getArguments().getString("comment"));
+
 //            marks = getArguments().get("marks");
         }
 

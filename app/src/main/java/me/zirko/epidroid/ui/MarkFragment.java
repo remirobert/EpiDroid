@@ -17,7 +17,10 @@ import com.android.volley.VolleyError;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import me.zirko.epidroid.R;
 import me.zirko.epidroid.model.Mark.Note;
@@ -29,9 +32,8 @@ public class MarkFragment extends Fragment implements Response.Listener<Notes>, 
 
     private String mToken;
     private static final String TAG = ModuleFragment.class.getSimpleName();
-    private ArrayAdapter mAdapter;
     private static String API_ROUTE = "/marks";
-    private HashMap<String, ArrayList> moduleMap;
+    private List<Note> mMarks;
 
     public MarkFragment() {
     }
@@ -67,33 +69,16 @@ public class MarkFragment extends Fragment implements Response.Listener<Notes>, 
 
     @Override
     public void onResponse(final Notes marks) {
-        Log.i(TAG, "get notes okay");
-
-        moduleMap = new HashMap<String, ArrayList>();
-        for (Note currentNote : marks.getNotes()) {
-            if (!moduleMap.containsKey(currentNote.getCodemodule())) {
-                moduleMap.put(currentNote.getTitlemodule(), new ArrayList());
-            }
-            moduleMap.get(currentNote.getTitlemodule()).add(currentNote);
-            Log.i(TAG, "debug + " + currentNote.getTitlemodule());
-        }
+        mMarks = marks.getNotes();
 
         ArrayList<String> displayArray = new ArrayList<String>();
-
-        for (ArrayList currentMarkModule : moduleMap.values()) {
-            Double averageMark = 0.0;
-            String nameModule = ((Note) currentMarkModule.get(0)).getTitlemodule();
-
-
-            for (Object currentMark : currentMarkModule) {
-                averageMark += ((Note) currentMark).getFinalNote();
-            }
-            averageMark /= currentMarkModule.size();
-            displayArray.add(nameModule + " : " + averageMark.toString());
+        for (Note currentNote : marks.getNotes()) {
+            displayArray.add(currentNote.getTitle() + " : " + currentNote.getFinalNote());
         }
-
         ArrayAdapter<String> itemsAdapter =
                 new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, displayArray);
+
+        Collections.reverse(displayArray);
 
         ListView listView = ((ListView) getActivity().findViewById(R.id.marks_list));
         listView.setAdapter(itemsAdapter);
@@ -101,36 +86,21 @@ public class MarkFragment extends Fragment implements Response.Listener<Notes>, 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "click cell detected " + position);
+
+                Note currentMark = (Note)mMarks.get(mMarks.size() - position - 1);
 
 
-                ArrayList<Note> currentMarks = null;
-
-                Integer indexKey = 0;
-                for (String key: moduleMap.keySet()) {
-                    if (indexKey == position) {
-                        currentMarks = moduleMap.get(key);
-
-                        break;
-                    }
-                    indexKey += 1;
-                }
-
-                if (currentMarks == null) {
-                    return;
-                }
-                Log.i(TAG, "count object : " + currentMarks.size());
-
+                Log.i(TAG, currentMark.getTitlemodule());
 
                 Intent intent = new Intent(getActivity(), DetailMarkActivity.class);
                 intent.putExtra("token", mToken);
-                intent.putExtra("title", ((Note)currentMarks.get(0)).getTitlemodule());
+                intent.putExtra("title", currentMark.getTitle());
+                intent.putExtra("module", currentMark.getTitlemodule());
+                //intent.putExtra("note", currentMark.getFinalNote());
+                //intent.putExtra("correcteur", currentMark.getCorrecteur());
+                //  intent.putExtra("comment", currentMark.getComment());
 
-                /*
-                intent.putExtra("scolaryear", currentModule.getScolaryear());
-                intent.putExtra("codemodule", currentModule.getCodemodule());
-                intent.putExtra("codeinstance", currentModule.getCodeinstance());
-                */
+
                 startActivity(intent);
             }
         });
