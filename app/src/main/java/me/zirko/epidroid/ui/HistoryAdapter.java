@@ -2,6 +2,7 @@ package me.zirko.epidroid.ui;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class HistoryAdapter extends ArrayAdapter<History> {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy 'à' HH:mm");
         History item = getItem(position);
         holder.title.setText(Html.fromHtml(item.getTitle()));
+        holder.title.setMovementMethod(LinkMovementMethod.getInstance());
         holder.content.setText(Html.fromHtml(item.getContent()));
         holder.date.setText(df.format(item.getDate()));
         if (item.getUser().getPicture() != null) {

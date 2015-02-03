@@ -12,7 +12,7 @@ public class Infos {
     @Expose
     private String title;
     @Expose
-    private Object email;
+    private String email;
     @SerializedName("internal_email")
     @Expose
     private String internalEmail;
@@ -142,14 +142,14 @@ public class Infos {
     /**
      * @return The email
      */
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
     /**
      * @param email The email
      */
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -16,10 +16,10 @@
         <RelativeLayout
             android:id="@+id/chosen_account_content_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="@dimen/keyline_1"
             android:paddingRight="@dimen/keyline_1"
-            android:paddingTop="@dimen/keyline_1">
+            android:paddingTop="@dimen/keyline_2">
 
             <me.zirko.epidroid.ui.widget.NetworkBezelImageView
                 android:id="@+id/profile_image"

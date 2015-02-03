@@ -19,7 +19,9 @@ import com.linearlistview.LinearListView;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import me.zirko.epidroid.R;
+import me.zirko.epidroid.event.DashboardEvent;
 import me.zirko.epidroid.model.Dashboard;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;
@@ -104,6 +106,7 @@ public class DashboardFragment extends Fragment
     @Override
     public void onResponse(Dashboard dashboard) {
         mData = dashboard;
+        EventBus.getDefault().post(new DashboardEvent(mToken, dashboard));
         if (mView != null && mActivity != null) {
             fillDashboard(dashboard);
             mAdapter.addAll(dashboard.getHistory());

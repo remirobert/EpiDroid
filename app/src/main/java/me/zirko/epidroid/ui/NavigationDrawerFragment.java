@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -20,13 +21,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.NetworkImageView;
 import com.linearlistview.LinearListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
 import me.zirko.epidroid.R;
+import me.zirko.epidroid.event.DashboardEvent;
+import me.zirko.epidroid.model.Dashboard;
+import me.zirko.epidroid.model.Infos;
+import me.zirko.epidroid.model.Photo;
+import me.zirko.epidroid.network.GsonRequest;
+import me.zirko.epidroid.network.VolleySingleton;
 
 
 /**
@@ -35,7 +48,8 @@ import me.zirko.epidroid.R;
  * .html#Interaction">
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
-public class NavigationDrawerFragment extends Fragment {
+public class NavigationDrawerFragment extends Fragment implements Response.Listener<Photo>,
+                                                                  Response.ErrorListener {
     /**
      * Remember the position of the selected item.
      */
@@ -45,7 +59,7 @@ public class NavigationDrawerFragment extends Fragment {
      * expands it. This shared preference tracks this.
      */
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
-    private static String API_ROUTE = "/menu";
+    private static String API_ROUTE = "/photo";
     /**
      * A pointer to the current callbacks instance (the Activity).
      */
@@ -64,6 +78,9 @@ public class NavigationDrawerFragment extends Fragment {
     private NavigationDrawerAdapter mAdapter;
     private List<FragmentNavItem> mDrawerNavItems = new ArrayList<>();
     private String mUserUuid;
+    private Activity mActivity;
+    private String mToken;
+    private Infos mData;
 
     public NavigationDrawerFragment() {
     }
@@ -164,6 +181,7 @@ public class NavigationDrawerFragment extends Fragment {
         super.onAttach(activity);
         try {
             mCallbacks = (NavigationDrawerCallbacks) activity;
+            mActivity = activity;
         } catch (ClassCastException e) {
             throw new ClassCastException("Activity must implement NavigationDrawerCallbacks.");
         }
@@ -178,10 +196,16 @@ public class NavigationDrawerFragment extends Fragment {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
 
+        EventBus.getDefault().register(this);
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
+    }
+
+    private void fetchProfilePhoto(String token, String login) {
+        VolleySingleton.getInstance(mActivity).addToRequestQueue(new GsonRequest<>(
+                API_ROUTE + "?token=" + token + "&login=" + login, Photo.class, this, this));
     }
 
     @Override
@@ -258,6 +282,7 @@ public class NavigationDrawerFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mCallbacks = null;
+        mActivity = null;
     }
 
     @Override
@@ -280,6 +305,29 @@ public class NavigationDrawerFragment extends Fragment {
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+    }
+
+    @SuppressWarnings("unused")
+    public void onEventMainThread(DashboardEvent event) {
+        mData = event.getData().getInfos();
+        mToken = event.getToken();
+        ensureData();
+    }
+
+    public void ensureData() {
+        if (mData != null) {
+            ((TextView) getView().findViewById(R.id.profile_name_text)).setText(mData.getTitle());
+            ((TextView) getView().findViewById(R.id.profile_email_text)).setText(mData.getInternalEmail());
+
+            fetchProfilePhoto(mToken, mData.getLogin());
+        }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ensureData();
     }
 
     /**
@@ -316,6 +364,17 @@ public class NavigationDrawerFragment extends Fragment {
                 mCallbacks.onNavigationDrawerItemSelected(navItem.getTitle(), fragment);
             }
         }
+    }
+
+    @Override
+    public void onResponse(Photo photo) {
+        ((NetworkImageView) getView().findViewById(R.id.profile_image)).setImageUrl(
+                photo.getUrl(), VolleySingleton.getInstance(mActivity).getImageLoader());
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+
     }
 
     /**
