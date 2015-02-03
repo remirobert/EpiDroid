@@ -32,11 +32,11 @@ public class DetailMarkFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((TextView)view.findViewById(R.id.module_title)).setText("salut");
-        ((TextView)view.findViewById(R.id.module_title)).setText(getArguments().getString("module"));
-        ((TextView)view.findViewById(R.id.final_note)).setText(getArguments().getString("note"));
-        ((TextView)view.findViewById(R.id.correcteur)).setText(getArguments().getString("correcteur"));
-        ((TextView)view.findViewById(R.id.comment)).setText(getArguments().getString("comment"));
+        ((TextView) view.findViewById(R.id.module_title)).setText("salut");
+        ((TextView) view.findViewById(R.id.module_title)).setText(getArguments().getString("module"));
+        ((TextView) view.findViewById(R.id.final_note)).setText(getArguments().getString("note"));
+        ((TextView) view.findViewById(R.id.correcteur)).setText(getArguments().getString("correcteur"));
+        ((TextView) view.findViewById(R.id.comment)).setText(getArguments().getString("comment"));
     }
 
     @Override

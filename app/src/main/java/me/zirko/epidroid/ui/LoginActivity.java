@@ -30,4 +30,4 @@ public class LoginActivity extends ActionBarActivity {
                     .commit();
         }
     }
- }
+}

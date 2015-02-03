@@ -12,14 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NavigationDrawerAdapter extends BaseAdapter {
-    private List<DrawerItem> mObjects = new ArrayList<>();
-
     private final Context mContext;
     private final LayoutInflater mInflater;
+    private List<DrawerItem> mObjects = new ArrayList<>();
 
     public NavigationDrawerAdapter(Context context) {
         mContext = context;
-        mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -80,7 +79,8 @@ public class NavigationDrawerAdapter extends BaseAdapter {
     }
 
     public class DrawerItem {
-        @DrawableRes public int iconRes;
+        @DrawableRes
+        public int iconRes;
         public String title;
 
         private DrawerItem(int iconRes, String title) {

@@ -33,9 +33,9 @@ import me.zirko.epidroid.network.VolleySingleton;
 
 public class MarkFragment extends ListFragment implements Response.Listener<Notes>, Response.ErrorListener {
 
-    private String mToken;
     private static final String TAG = ModuleFragment.class.getSimpleName();
     private static String API_ROUTE = "/marks";
+    private String mToken;
     private List<Note> mMarks;
 
     public MarkFragment() {
@@ -66,7 +66,7 @@ public class MarkFragment extends ListFragment implements Response.Listener<Note
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Note currentMark = (Note)mMarks.get(mMarks.size() - position - 1);
+        Note currentMark = (Note) mMarks.get(mMarks.size() - position - 1);
 
 
         Log.i(TAG, currentMark.getTitlemodule());
@@ -92,15 +92,15 @@ public class MarkFragment extends ListFragment implements Response.Listener<Note
             displayArray.add(currentNote.getTitle() + " : <strong>" + currentNote.getFinalNote() + "</strong>");
         }
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(
-                getActivity(), android.R.layout.simple_list_item_1, displayArray){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(), android.R.layout.simple_list_item_1, displayArray) {
 
             @Override
             public View getView(int position, View convertView,
                                 ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
+                View view = super.getView(position, convertView, parent);
 
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
                 textView.setText(Html.fromHtml(displayArray.get(position)), TextView.BufferType.SPANNABLE);
                 return view;
             }

@@ -49,7 +49,7 @@ import me.zirko.epidroid.network.VolleySingleton;
  * design guidelines</a> for a complete explanation of the behaviors implemented here.
  */
 public class NavigationDrawerFragment extends Fragment implements Response.Listener<Photo>,
-                                                                  Response.ErrorListener {
+        Response.ErrorListener {
     /**
      * Remember the position of the selected item.
      */

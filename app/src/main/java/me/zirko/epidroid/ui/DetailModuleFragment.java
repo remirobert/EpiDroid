@@ -91,7 +91,7 @@ public class DetailModuleFragment extends Fragment
 
             ((TextView) getView().findViewById(R.id.module_grade))
                     .setText(getString(R.string.student_grade_module,
-                                    detailModule.getStudentGrade()));
+                            detailModule.getStudentGrade()));
 
             ((TextView) getView().findViewById(R.id.module_credits)).setText(
                     getString(R.string.number_credits_module,
