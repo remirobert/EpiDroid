@@ -238,20 +238,17 @@ public class NavigationDrawerFragment extends Fragment implements Response.Liste
         addNavItem(R.drawable.ic_drawer_modules, R.string.navdrawer_item_marks,
                 R.string.navdrawer_item_marks, MarkFragment.class);
 
-        addNavItem(R.drawable.ic_drawer_modules, R.string.navdrawer_item_modules,
+        addNavItem(R.drawable.ic_module, R.string.navdrawer_item_modules,
                 R.string.navdrawer_item_modules, ModuleFragment.class);
 
         addNavItem(R.drawable.ic_drawer_projects, R.string.navdrawer_item_projects,
                 R.string.navdrawer_item_projects, ProjectsFragment.class);
 
-        addNavItem(R.drawable.ic_drawer_susies, R.string.navdrawer_item_susies,
-                R.string.navdrawer_item_susies, DashboardFragment.class);
-
         addNavItem(R.drawable.ic_drawer_group_photos, R.string.navdrawer_item_group_photos,
                 R.string.navdrawer_item_group_photos, DashboardFragment.class);
 
-        addNavItem(R.drawable.ic_drawer_settings, R.string.navdrawer_item_settings,
-                R.string.navdrawer_item_settings, DashboardFragment.class);
+        addNavItem(R.drawable.ic_logout, R.string.navdrawer_item_logout,
+                R.string.navdrawer_item_logout, LogoutFragment.class);
 
         mDrawerListView.setAdapter(mAdapter);
 //        mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);

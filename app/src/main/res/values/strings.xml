@@ -45,5 +45,6 @@
     <string name="description">Description</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="project_time">Rendu le %1$s</string>
+    <string name="navdrawer_item_logout">Déconnexion</string>
 
 </resources>
