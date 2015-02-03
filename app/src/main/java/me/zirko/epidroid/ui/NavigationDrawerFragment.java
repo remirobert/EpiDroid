@@ -244,9 +244,6 @@ public class NavigationDrawerFragment extends Fragment implements Response.Liste
         addNavItem(R.drawable.ic_drawer_projects, R.string.navdrawer_item_projects,
                 R.string.navdrawer_item_projects, ProjectsFragment.class);
 
-        addNavItem(R.drawable.ic_drawer_group_photos, R.string.navdrawer_item_group_photos,
-                R.string.navdrawer_item_group_photos, DashboardFragment.class);
-
         addNavItem(R.drawable.ic_logout, R.string.navdrawer_item_logout,
                 R.string.navdrawer_item_logout, LogoutFragment.class);
 
