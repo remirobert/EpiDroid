@@ -3,6 +3,7 @@ package me.zirko.epidroid.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -59,9 +60,10 @@ public class ScheduleFragment extends ListFragment
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-        String date = df.format(new Date());
+        String date = df.format(new Date(System.currentTimeMillis() - (48 * 60 * 60 * 1000)));
+        String now = df.format(new Date());
 
-        String url = API_ROUTE + "?start=" + date + "&end=" + date + "&token=" + mToken;
+        String url = API_ROUTE + "?start=" + date + "&end=" + now + "&token=" + mToken;
 
         VolleySingleton.getInstance(mActivity).addToRequestQueue(new GsonRequest<>(
                 url, Schedule[].class, this, this));
@@ -94,7 +96,8 @@ public class ScheduleFragment extends ListFragment
 
 
         for (Schedule event : schedule) {
-            if (((event.getPast() != null && !event.getPast()) || event.getAllowToken())
+            if (((event.getPast() != null && !event.getPast()) ||
+                    (event.getAllowToken() != null && event.getAllowToken()))
                     && "registered".equals(event.getEventRegistered())) {
                 eventList.add(event);
             }
