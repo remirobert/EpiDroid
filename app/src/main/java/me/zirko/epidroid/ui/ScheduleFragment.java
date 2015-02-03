@@ -142,9 +142,8 @@ public class ScheduleFragment extends ListFragment
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
         alert.setTitle("Token");
-        //alert.setMessage("Message");
 
-// Set an EditText view to get user input
+        // Set an EditText view to get user input
         final EditText input = new EditText(getActivity());
         alert.setView(input);
 
@@ -156,42 +155,17 @@ public class ScheduleFragment extends ListFragment
                  PARAMS REQUEST POST
                   */
 
-                //Map<String, String> params = new HashMap<String, String>();
-                //params.put("token", mToken);
-                //params.put("scolaryear", currentSchedule.getScolaryear());
-                //params.put("codemodule", currentSchedule.getCodemodule());
-                //params.put("codeinstance", currentSchedule.getCodeinstance());
-                //params.put("codeacti", currentSchedule.getCodeacti());
-                //params.put("codeevent", currentSchedule.getCodeevent());
-                //params.put("tokenvalidationcode", input.getText().toString());
+                Map<String, String> params = new HashMap<>();
+                params.put("token", mToken);
+                params.put("scolaryear", currentSchedule.getScolaryear());
+                params.put("codemodule", currentSchedule.getCodemodule());
+                params.put("codeinstance", currentSchedule.getCodeinstance());
+                params.put("codeacti", currentSchedule.getCodeacti());
+                params.put("codeevent", currentSchedule.getCodeevent());
+                params.put("tokenvalidationcode", input.getText().toString());
 
-                // PREPARING REQUEST :
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://epitech-api.herokuapp.com" + TOKEN_API_ROUTE);
-
-                try {
-                    // Add your data
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-                    nameValuePairs.add(new BasicNameValuePair("token", mToken));
-                    nameValuePairs.add(new BasicNameValuePair("scolaryear", currentSchedule.getScolaryear()));
-                    nameValuePairs.add(new BasicNameValuePair("codemodule", currentSchedule.getCodemodule()));
-                    nameValuePairs.add(new BasicNameValuePair("codeinstance", currentSchedule.getCodeinstance()));
-                    nameValuePairs.add(new BasicNameValuePair("codeacti", currentSchedule.getCodeacti()));
-                    nameValuePairs.add(new BasicNameValuePair("codeevent", currentSchedule.getCodeevent()));
-                    nameValuePairs.add(new BasicNameValuePair("tokenvalidationcode", input.getText().toString()));
-
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                    // Execute HTTP Post Request
-                    HttpResponse response = httpclient.execute(httppost);
-                    Log.i(TAG, "cher : " + response);
-                } catch (ClientProtocolException e) {
-                    // TODO Auto-generated catch block
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                }
-
-
+                VolleySingleton.getInstance(mActivity).addToRequestQueue(new GsonRequest<>(
+                        TOKEN_API_ROUTE, null, null, null, params));
             }
         });
 
