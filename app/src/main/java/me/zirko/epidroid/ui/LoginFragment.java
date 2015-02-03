@@ -26,10 +26,10 @@ import me.zirko.epidroid.network.VolleySingleton;
 public class LoginFragment extends Fragment
         implements Response.Listener<Account>, Response.ErrorListener {
 
+    public static final String PREFERENCE_CREDENTIALS = "preference:credentials";
+    public static final String PREFERENCE_CREDENTIALS_TOKEN = "preference:credentials";
     private static final String TAG = LoginFragment.class.getSimpleName();
     private static String API_ROUTE = "/login";
-    private static final String PREFERENCE_CREDENTIALS = "preference:credentials";
-    private static final String PREFERENCE_CREDENTIALS_TOKEN = "preference:credentials";
     private View rootView;
 
     public LoginFragment() {
@@ -43,31 +43,12 @@ public class LoginFragment extends Fragment
                 PREFERENCE_CREDENTIALS, Context.MODE_PRIVATE);
         String token = sharedPref.getString(PREFERENCE_CREDENTIALS_TOKEN, null);
 
-        if (token != null) {
+        if (token != null && token.length() > 0) {
             Intent intent = new Intent(getActivity(), HomeActivity.class);
             intent.putExtra("token", token);
             startActivity(intent);
             getActivity().finish();
         }
-    }
-
-    @Override
-    public void onResponse(Account user) {
-        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(100);
-        SharedPreferences sharedPref = getActivity().getSharedPreferences(
-                PREFERENCE_CREDENTIALS, Context.MODE_PRIVATE);
-        sharedPref.edit().putString(PREFERENCE_CREDENTIALS_TOKEN, user.getToken()).commit();
-
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        intent.putExtra("token", user.getToken());
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        Log.e(TAG, "err: " + volleyError.toString());
-        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(-1);
     }
 
     @Override
@@ -101,5 +82,24 @@ public class LoginFragment extends Fragment
 
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(new GsonRequest<>(
                 API_ROUTE, Account.class, this, this, params));
+    }
+
+    @Override
+    public void onResponse(Account user) {
+        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(100);
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                PREFERENCE_CREDENTIALS, Context.MODE_PRIVATE);
+        sharedPref.edit().putString(PREFERENCE_CREDENTIALS_TOKEN, user.getToken()).commit();
+
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        intent.putExtra("token", user.getToken());
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError volleyError) {
+        Log.e(TAG, "err: " + volleyError.toString());
+        ((ActionProcessButton) this.rootView.findViewById(R.id.login_connect)).setProgress(-1);
     }
 }
