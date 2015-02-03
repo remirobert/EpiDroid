@@ -28,7 +28,7 @@ import me.zirko.epidroid.model.Mark.Notes;
 import me.zirko.epidroid.network.GsonRequest;
 import me.zirko.epidroid.network.VolleySingleton;
 
-public class MarkFragment extends Fragment implements Response.Listener<Notes>, Response.ErrorListener {
+public class MarkFragment extends ListFragment implements Response.Listener<Notes>, Response.ErrorListener {
 
     private String mToken;
     private static final String TAG = ModuleFragment.class.getSimpleName();
@@ -57,14 +57,27 @@ public class MarkFragment extends Fragment implements Response.Listener<Notes>, 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_marks, container, false);
+    public void onErrorResponse(VolleyError volleyError) {
+        Log.e(TAG, "error request : " + volleyError.toString());
     }
 
     @Override
-    public void onErrorResponse(VolleyError volleyError) {
-        Log.e(TAG, "error request : " + volleyError.toString());
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Note currentMark = (Note)mMarks.get(mMarks.size() - position - 1);
+
+
+        Log.i(TAG, currentMark.getTitlemodule());
+
+        Intent intent = new Intent(getActivity(), DetailMarkActivity.class);
+        intent.putExtra("token", mToken);
+        intent.putExtra("title", currentMark.getTitle());
+        intent.putExtra("module", currentMark.getTitlemodule());
+        //intent.putExtra("note", currentMark.getFinalNote());
+        //intent.putExtra("correcteur", currentMark.getCorrecteur());
+        //  intent.putExtra("comment", currentMark.getComment());
+
+
+        startActivity(intent);
     }
 
     @Override
@@ -80,30 +93,7 @@ public class MarkFragment extends Fragment implements Response.Listener<Notes>, 
 
         Collections.reverse(displayArray);
 
-        ListView listView = ((ListView) getActivity().findViewById(R.id.marks_list));
-        listView.setAdapter(itemsAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Note currentMark = (Note)mMarks.get(mMarks.size() - position - 1);
-
-
-                Log.i(TAG, currentMark.getTitlemodule());
-
-                Intent intent = new Intent(getActivity(), DetailMarkActivity.class);
-                intent.putExtra("token", mToken);
-                intent.putExtra("title", currentMark.getTitle());
-                intent.putExtra("module", currentMark.getTitlemodule());
-                //intent.putExtra("note", currentMark.getFinalNote());
-                //intent.putExtra("correcteur", currentMark.getCorrecteur());
-                //  intent.putExtra("comment", currentMark.getComment());
-
-
-                startActivity(intent);
-            }
-        });
+        setListAdapter(itemsAdapter);
 
     }
 }
