@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/keyline_1"
     tools:context="me.zirko.epidroid.ui.DetailModuleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/keyline_1"
         android:orientation="vertical">
 
         <TextView
